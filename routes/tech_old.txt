@@ -1,0 +1,47 @@
+--------------------------------------------------------
+Cisco IOS Software, C800 Software (C800-UNIVERSALK9-M), Version 15.5(3)M, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2016 by Cisco Systems, Inc.
+Compiled Thu 14-Jul-16 08:37 by prod_rel_team
+
+ROM: System Bootstrap, Version 12.4(22r)YB5, RELEASE SOFTWARE (fc1)
+
+hostname Router01
+
+Uptime for this control processor is 6 weeks, 2 days, 3 hours, 4 minutes
+System returned to ROM by reload at 15:22:53 UTC Tue Apr 4 2017
+System restarted at 15:24:35 UTC Tue Apr 4 2017
+System image file is "flash:c800-universalk9-mz.SPA.155-3.M.bin"
+Last reload type: Normal Reload
+Last reload reason: Reload Command
+
+Cisco 881 (MPC8300) processor (revision 1.0) with 236544K/25600K bytes of memory.
+Processor board ID FTX12345678
+MPC8300 CPU Rev: 2.2
+
+2 FastEthernet interfaces
+1 Virtual Private Network (VPN) Module
+256K bytes of non-volatile configuration memory.
+126000K bytes of ATA CompactFlash (Read/Write)
+
+License Info:
+License UDI:
+-------------------------------------------------------------
+
+# The following sections are extracted from the 'show tech-support' output and edited for brevity
+
+Inventory:
+
+NAME: "CISCO881-SEC-K9", DESCR: "Cisco 881 Ethernet Security Router with VPN"
+PID: CISCO881-SEC-K9 , VID: V01, SN: FTX12345678
+
+NAME: "FastEthernet0", DESCR: "FastEthernet Port"
+PID: , VID: , SN: 
+
+NAME: "FastEthernet1", DESCR: "FastEthernet Port"
+PID: , VID: , SN: 
+
+NAME: "Virtual-Access1", DESCR: "Virtual Access Interface"
+PID: , VID: , SN: 
+
+--------------------------------------------------------

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipment</title>
+</head>
+<body>
+    <h1>Equipment</h1>
+    <ul>
+        {% for equip in equipment %}
+        <li><a href="{{ url_for('equipment_bp.get_equipment_detail', equip_id=equip._id) }}">{{ equip.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('equipment_bp.new_equipment') }}">Create New Equipment</a>
+</body>
+</html>

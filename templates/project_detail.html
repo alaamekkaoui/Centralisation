@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail</title>
+</head>
+<body>
+    <h1>Nodes in Project {{ project_id }}</h1>
+    <ul>
+        {% for node in nodes %}
+        <li><a href="{{ url_for('node_details', project_id=project_id, node_id=node['node_id']) }}">{{ node['name'] }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

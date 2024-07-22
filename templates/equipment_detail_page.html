@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment Detail - {{ equipment.name }}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #4a148c; /* Dark purple */
+            color: #fff;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar img {
+            width: 95px;
+            height: auto;
+            background-color: #fff; /* White background */
+            padding: 2px;
+            border-radius: 5px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #4a148c; /* Dark purple */
+            color: #fff;
+            width: 80px;
+            height: 100vh;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            padding-top: 20px;
+            overflow-y: auto;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .sidebar:hover {
+            width: 250px;
+        }
+
+        .sidebar a, .sidebar button {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover, .sidebar button:hover {
+            background-color: #6a1b9a;
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        .sidebar span {
+            display: none;
+        }
+
+        .sidebar:hover span {
+            display: inline;
+        }
+
+        /* Main Container */
+        .container {
+            margin-left: 100px; /* Adjust for sidebar width */
+            margin-right: 20px; /* Adjust for sidebar width */
+            padding: 20px;
+            max-width: calc(100% - 100px); /* Adjust for sidebar width */
+            margin-top: 60px; /* Adjust for navbar height */
+            background-color: #fff; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            font-size: 1.5rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container p {
+            margin: 10px 0;
+        }
+
+        .container .btn {
+            padding: 10px 20px;
+            background-color: #6c5ce7;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        .container .btn:hover {
+            background-color: #52479e;
+        }
+
+        /* Tech Support Info */
+        .tech-support {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-support h2 {
+            font-size: 1.5rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .interface-item {
+            margin-bottom: 20px; /* Space between interfaces */
+            padding-bottom: 10px; /* Space below the interface info */
+            border-bottom: 1px solid #ddd; /* Underline for each interface */
+        }
+
+        .interface-item:last-of-type {
+            border-bottom: none; /* Remove underline for the last interface */
+        }
+
+        .interface-info {
+            margin-top: 10px; /* Space between the interface title and its details */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="flex items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DXC_Technology_logo_%282021%29.svg/2560px-DXC_Technology_logo_%282021%29.svg.png" alt="DXC Logo">
+            
+            <h1>{{ equipment.name }}</h1>
+        </div>
+        <div class="flex items-center user-info">
+            <span>Manager</span>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <!-- Navigation Section -->
+        <div class="px-4">
+            <h2 class="text-lg text-white">Navigation</h2>
+            <ul>
+                <li>
+                    <a href="{{ url_for('client_bp.get_clients') }}" class="text-gray-400">
+                        <i class="fas fa-users"></i><span class="ml-2">List of Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('client_bp.get_client', client_name=client_name) }}" class="text-gray-400">
+                        <i class="fas fa-user"></i><span class="ml-2">Client Detail</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Equipment Section -->
+        <div class="px-4 mt-4">
+            <h2 class="text-lg text-white">Equipment</h2>
+            <ul>
+                <li>
+                    <a href="{{ url_for('client_bp.update_equipment', client_name=client_name, equip_id=equipment._id) }}"
+                        class="text-gray-400">
+                        <i class="fas fa-edit"></i><span class="ml-2">Update Equipment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('client_bp.delete_equipment', client_name=client_name, equip_id=equipment._id) }}"
+                        class="text-gray-400">
+                        <i class="fas fa-trash-alt"></i><span class="ml-2">Delete Equipment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('client_bp.access_console', client_name=client_name, equip_id=equipment._id, host=equipment.name, ip_address=equipment.ip_address) }}"
+                        class="text-gray-400">
+                        <i class="fas fa-terminal"></i><span class="ml-2">Access Console</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('client_bp.download_config', client_name=client_name, equip_id=equipment._id) }}"
+                        class="text-gray-400">
+                        <i class="fas fa-cogs"></i><span class="ml-2">Retrieve Configuration</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Nipper Audit Section -->
+        <div class="px-4 mt-4">
+            <h2 class="text-lg text-white">Nipper Audit</h2>
+            <ul>
+                <li>
+                    <form action="{{ url_for('nipper_bp.nipper_audit') }}" method="GET">
+                        <button type="submit" class="text-gray-400 flex items-center">
+                            <i class="fas fa-play"></i><span class="ml-2">Start Nipper Audit</span>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="{{ url_for('nipper_bp.download_audit') }}" method="GET">
+                        <button type="submit" class="text-gray-400 flex items-center">
+                            <i class="fas fa-download"></i><span class="ml-2">Download Nipper Audit as PDF</span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Equipment Full Detail</h1>
+
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="alert-messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        {% if equipment %}
+        <p><strong>Name:</strong> {{ equipment.name }}</p>
+        <p><strong>Type:</strong> {{ equipment.equipment_type }}</p>
+        <p><strong>IP Address:</strong> {{ equipment.ip_address }}</p>
+        <p><strong>Status :</strong> {{ status}}</p>
+        <p><strong>Port:</strong> {{ equipment.port if equipment.port else 22 }}</p>
+        <!-- Tech Support Information Section -->
+        <div class="tech-support">
+            <h2>Tech Support Information</h2>
+            <div id="techSupportInfo"></div>
+        </div>
+    </div>
+    <script>
+        console.log('Fetching tech support information...');
+    
+        // Fetch and display tech support information
+        fetch('/retrieve_config/{{ client_name }}/equipment/{{ equipment._id }}', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Tech support data received:', data);
+    
+            // Check if the response status is 'success'
+            if (data.status === 'success') {
+                const techSupportData = data.tech_support_data;
+                const infoContainer = document.getElementById('techSupportInfo');
+                infoContainer.innerHTML = ''; 
+    
+                // Display general information
+                const keysToDisplay = [
+                    { key: 'Equipment', label: 'Equipment' },
+                    { key: 'Version', label: 'Version' },
+                    { key: 'SerialNumber', label: 'Serial Number' },
+                    { key: 'EvaluationLicenseExpires', label: 'Evaluation License Expires' },
+                    { key: 'Manufacturer', label: 'Manufacturer' },
+                    { key: 'LicenseState', label: 'License State' }
+                ];
+    
+                keysToDisplay.forEach(({ key, label }) => {
+                    if (techSupportData[key] && techSupportData[key] !== 'unknown' && techSupportData[key] !== '') {
+                        console.log(`Displaying ${label}:`, techSupportData[key]);
+                        const pElement = document.createElement('p');
+                        pElement.classList.add('info-item');
+                        pElement.innerHTML = `<strong>${label}:</strong> ${techSupportData[key]}`;
+                        infoContainer.appendChild(pElement);
+                    }
+                });
+    
+                // Display Interfaces in a list
+                if (techSupportData.Interfaces && techSupportData.Interfaces.length > 0) {
+                    const ulElement = document.createElement('ul');
+                    techSupportData.Interfaces.forEach(interface => {
+                        console.log('Displaying interface:', interface);
+                        const liElement = document.createElement('li');
+                        liElement.classList.add('interface-item'); 
+                        
+                        let interfaceContent = '';
+    
+                        if (interface.Interface && interface.Interface !== 'unknown' && interface.Interface !== '') {
+                            interfaceContent += `<strong>Interface:</strong> ${interface.Interface}<br>`;
+                        }
+                        if (interface.MACAddress && interface.MACAddress !== 'unknown' && interface.MACAddress !== '') {
+                            interfaceContent += `<strong>MAC Address:</strong> ${interface.MACAddress}<br>`;
+                        }
+                        if (interface.IPAddress && interface.IPAddress !== 'unknown' && interface.IPAddress !== '') {
+                            interfaceContent += `<strong>IP Address:</strong> ${interface.IPAddress}<br>`;
+                        }
+                        if (interface.Status && interface.Status !== 'unknown' && interface.Status !== '') {
+                            interfaceContent += `<strong>Status:</strong> ${interface.Status}<br>`;
+                        }
+                        if (interface.Protocol && interface.Protocol !== 'unknown' && interface.Protocol !== '') {
+                            interfaceContent += `<strong>Protocol:</strong> ${interface.Protocol}<br>`;
+                        }
+    
+                        if (interfaceContent) {
+                            const divElement = document.createElement('div');
+                            divElement.classList.add('interface-info'); 
+                            divElement.innerHTML = interfaceContent;
+                            liElement.appendChild(divElement);
+                            ulElement.appendChild(liElement);
+                        }
+                    });
+                    infoContainer.appendChild(ulElement);
+                } else {
+                    // Display message if no interfaces are found
+                    const pElement = document.createElement('p');
+                    pElement.classList.add('info-item');
+                    pElement.innerHTML = '<strong>Interfaces:</strong> No interfaces available';
+                    infoContainer.appendChild(pElement);
+                }
+            } else {
+                // Display message if status is not success
+                const infoContainer = document.getElementById('techSupportInfo');
+                infoContainer.innerHTML = '<p>Failed to fetch tech support information. Status: ' + data.status + '</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching tech support information:', error);
+            const infoContainer = document.getElementById('techSupportInfo');
+            infoContainer.innerHTML = '<p>Failed to fetch tech support information.</p>';
+        });
+    </script>
+    
+        {% else %}
+        <p>No equipment found.</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

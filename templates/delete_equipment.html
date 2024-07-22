@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Equipment</title>
+</head>
+<body>
+    <h1>Delete Equipment</h1>
+    <p>Are you sure you want to delete equipment {{ equip_id }}?</p>
+    <form method="POST" action="{{ url_for('equipment_bp.delete_equipment', equip_id=equip_id) }}">
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

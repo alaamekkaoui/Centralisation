@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Support Info</title>
+</head>
+<body>
+    <h1>Tech Support Information</h1>
+    <p><strong>Equipment:</strong> {{ info.Equipment }}</p>
+    <p><strong>Version:</strong> {{ info.Version }}</p>
+    <p><strong>Serial Number:</strong> {{ info.SerialNumber }}</p>
+    {% if info.EvaluationLicenseExpires != 'Unknown' %}
+        <p><strong>Evaluation License Expires:</strong> {{ info.EvaluationLicenseExpires }}</p>
+    {% endif %}
+    <p><strong>License State:</strong> {{ info.LicenseState }}</p>
+    <p><strong>Manufacturer:</strong> {{ info.Manufacturer }}</p>
+
+    <h2>Interfaces</h2>
+    <ul>
+        {% for interface in info.Interfaces %}
+            <li>
+                <p><strong>Interface:</strong> {{ interface.Interface }}</p>
+                <p><strong>MAC Address:</strong> {{ interface.MACAddress }}</p>
+                <p><strong>IP Address:</strong> {{ interface.IPAddress }}</p>
+                <p><strong>Status:</strong> {{ interface.Status }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

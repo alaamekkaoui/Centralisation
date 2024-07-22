@@ -1,0 +1,107 @@
+Building configuration...
+
+Current configuration : 1310 bytes
+!
+! Last configuration change at 20:18:09 UTC Mon Jul 22 2024
+!
+version 15.3
+service config
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no platform punt-keepalive disable-kernel-core
+platform console virtual
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 5 $1$/iVf$fkoh4vt189wAXO2idbbjl.
+!
+no aaa new-model
+!
+!
+!
+!
+!
+
+
+ip domain name dxc.intern
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+username adminL privilege 15 secret 5 $1$Zxz/$z2tcjZxqFYqmZJ6/3tRZg1
+!
+redundancy
+ mode none
+!
+!
+!
+ip tftp source-interface GigabitEthernet0
+ip ssh time-out 60
+ip ssh authentication-retries 2
+ip ssh version 2
+!
+!
+!
+!
+interface GigabitEthernet1
+ ip address 192.168.11.170 255.255.255.0
+ negotiation auto
+!
+interface GigabitEthernet2
+ ip address 192.168.11.232 255.255.255.0
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ ip address dhcp
+ negotiation auto
+!
+!
+virtual-service csr_mgmt
+ activate
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+onep
+!
+end

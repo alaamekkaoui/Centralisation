@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Support Information</title>
+</head>
+<body>
+    <h1>Tech Support Information</h1>
+
+    {% if info %}
+    <ul>
+        <li><strong>Hostname:</strong> {{ info['equipement'] }}</li>
+        <li><strong>Manufacturer:</strong> {{ info['Fabricant'] }}</li>
+        <li><strong>Version:</strong> {{ info['Version'] }}</li>
+        <li><strong>Serial Number:</strong> {{ info['SerialNumber'] }}</li>
+        <li><strong>MAC Address:</strong> {{ info['Addressemac'] }}</li>
+        <li><strong>Function:</strong> {{ info['Fonction'] }}</li>
+        <li><strong>Role:</strong> {{ info['Role'] }}</li>
+    </ul>
+    {% else %}
+    <p>No information available.</p>
+    {% endif %}
+
+</body>
+</html>

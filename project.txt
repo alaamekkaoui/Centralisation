@@ -1,0 +1,23 @@
+your_project/
+├── app.py
+├── config.py
+├── models/
+│   ├── __init__.py
+│   ├── client.py
+│   ├── equipment.py
+├── routes/
+│   ├── __init__.py
+│   ├── client_routes.py
+│   ├── network_routes.py
+│   ├── audit_routes.py
+│   ├── equipment_routes.py
+├── services/
+│   ├── __init__.py
+│   ├── ssh_service.py
+│   ├── audit_service.py
+├── utils/
+│   ├── __init__.py
+│   ├── db.py
+├── requirements.txt
+└── .env
+

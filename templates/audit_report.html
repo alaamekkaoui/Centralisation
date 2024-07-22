@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nipper Audit Report</title>
+</head>
+<body>
+    <h1>Nipper Audit Report</h1>
+    <div>{{ audit_content | safe }}</div>
+    <form action="{{ url_for('nipper_bp.download_audit') }}" method="GET">
+        <button type="submit" class="btn btn-primary">Download Audit Report as PDF</button>
+    </form>
+</body>
+</html>

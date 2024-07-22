@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Client</title>
+</head>
+<body>
+    <h1>Delete Client</h1>
+    <p>Are you sure you want to delete client {{ client_id }}?</p>
+    <form method="POST" action="{{ url_for('client_bp.delete_client', client_id=client_id) }}">
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

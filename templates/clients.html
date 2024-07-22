@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #4a148c; /* Dark purple */
+            color: #fff;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .navbar img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #4a148c; /* Dark purple */
+            color: #fff;
+            width: 80px;
+            height: 100vh;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            padding-top: 20px;
+            overflow-y: auto;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .sidebar:hover {
+            width: 250px;
+        }
+
+        .sidebar a, .sidebar button {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover, .sidebar button:hover {
+            background-color: #6a1b9a;
+        }
+
+        .sidebar i {
+            margin-right: 10px;
+        }
+
+        .sidebar span {
+            display: none;
+        }
+
+        .sidebar:hover span {
+            display: inline;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 80px auto; /* Adjusted for centering */
+            padding: 20px;
+            background-color: #fff; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%; /* Adjust as needed */
+            max-width: 1200px; /* Max width to maintain readability */
+        }
+
+        .container h2 {
+            font-size: 1.5rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .client-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 200px; /* Fixed height for square cards */
+        }
+
+        .client-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .client-card h3 {
+            color: #6c5ce7;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .client-card p {
+            margin-bottom: 10px;
+        }
+
+        .add-client-card {
+            background-color: #6c5ce7;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 200px; /* Fixed height for square card */
+        }
+
+        .add-client-card:hover {
+            transform: translateY(-5px);
+            background-color: #52479e;
+        }
+        .navbar img {
+            width: 95px;
+            height: auto;
+            background-color: #fff; /* White background */
+            padding: 2px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="flex items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DXC_Technology_logo_%282021%29.svg/2560px-DXC_Technology_logo_%282021%29.svg.png" alt="DXC Logo">
+            <h1>Clients Dashboard</h1>
+        </div>
+        <div class="flex items-center user-info">
+            <span>Manager</span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Total Clients: {{ clients|length }}</h2> <!-- Display total clients -->
+        <div class="client-grid">
+            {% for client in clients %}
+            <div class="client-card" onclick="window.location.href='{{ url_for('client_bp.get_client', client_name=client.name|urlencode) }}'">
+                <h3>{{ client.name }}</h3>
+                <p>Total Equipment: {{ client.equipment_count }}</p>
+            </div>
+            {% endfor %}
+            <div class="add-client-card" onclick="window.location.href='{{ url_for('client_bp.new_client') }}'">
+                <i class="fas fa-plus-circle fa-3x mb-2"></i>
+                <p>Add New Client</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FontAwesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>

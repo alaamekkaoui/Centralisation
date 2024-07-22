@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Client</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #4a148c; /* Dark purple */
+            color: #fff;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar img {
+            width: 95px;
+            height: auto;
+            background-color: #fff; /* White background */
+            padding: 2px;
+            border-radius: 5px;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .navbar .user-info {
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Main Container */
+        .container {
+            margin: 60px 20px 20px; /* Adjust for navbar height */
+            padding: 20px;
+            background-color: #fff; /* White container */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h2 {
+            font-size: 1.5rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container .form-group {
+            margin-bottom: 20px;
+        }
+
+        .container .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .container .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .container button {
+            padding: 10px 20px;
+            background-color: #6c5ce7;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .container button:hover {
+            background-color: #52479e;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4a148c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #6a1b9a;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="flex items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DXC_Technology_logo_%282021%29.svg/2560px-DXC_Technology_logo_%282021%29.svg.png" alt="DXC Logo">
+        </div>
+        <h1>Update Client : {{ client.name }}</h1>
+        <div class="flex items-center user-info">
+            <span>Manager</span>
+        </div>
+    </nav>
+
+     <!-- Main Content -->
+     <div class="container mt-16 p-6 bg-white rounded-lg shadow-lg">
+        
+        <form method="POST" action="{{ url_for('client_bp.update_client', client_name=client.name) }}">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ client.name }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Update</button>
+        </form>
+        <div class="px-4">
+            <h2 class="text-lg text-white">Navigation</h2>
+            <ul>
+                <li>
+                    <a href="{{ url_for('client_bp.get_clients') }}" class="text-gray-400">
+                        <i class="fas fa-users"></i><span class="ml-2">List of Clients</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- FontAwesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
