@@ -7,7 +7,7 @@
 <body>
     <h1>Delete Equipment</h1>
     <p>Are you sure you want to delete equipment {{ equip_id }}?</p>
-    <form method="POST" action="{{ url_for('equipment_bp.delete_equipment', equip_id=equip_id) }}">
+    <form method="POST" action="{{ url_for('client_bp.delete_equipment', equip_id=equip_id , client_name=client_name) }}">
         <button type="submit">Delete</button>
     </form>
 </body>

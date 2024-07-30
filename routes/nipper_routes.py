@@ -7,11 +7,11 @@ nipper_bp = Blueprint('nipper_bp', __name__)
 
 @nipper_bp.route('/nipper_audit', methods=['GET'])
 def nipper_audit():
-    input_file = 'C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation-audit\\Centralisation-audit\\device_running_config.txt'
+    input_file = 'C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation_Copy\\device_running_config.txt'
     output_file = 'report.html'
 
     try:
-        command = ['C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation-audit\\Centralisation-audit\\nipper.exe', f'--input={input_file}', f'--output={output_file}']
+        command = ['C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation_Copy\\nipper.exe', f'--input={input_file}', f'--output={output_file}']
         subprocess.run(command, check=True, capture_output=True)
 
         if os.path.exists(output_file):
@@ -26,13 +26,14 @@ def nipper_audit():
         return f"Error running nipper command: {e}", 500
 
     except Exception as e:
+        print(e)
         return f"An error occurred: {e}", 500
 
 config = pdfkit.configuration(wkhtmltopdf='c:\\Users\\dsdem\\Downloads\\wkhtmltox\\bin\\wkhtmltopdf.exe')
 @nipper_bp.route('/download_audit', methods=['GET'])
 def download_audit():
-    html_file = './report.html'
-    pdf_file = 'C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation-audit\\report.pdf'
+    html_file = 'C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation_Copy\\report.html'
+    pdf_file = 'C:\\Users\\dsdem\\OneDrive\\Bureau\\Centralisation_Copy\\report.pdf'
 
     try:
         if os.path.exists(html_file):

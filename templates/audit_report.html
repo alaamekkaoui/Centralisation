@@ -3,13 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nipper Audit Report</title>
+    <title>Audit Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: rgb(0, 0, 0);
+            padding: 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ececec;
+            color: rgb(0, 0, 0); /* Navbar text color set to black */
+            padding: 10px 20px;
+        }
+        .navbar h1 {
+            margin: 0;
+            color: rgb(0, 0, 0); /* Navbar title color set to black */
+        }
+        .navbar img {
+            height: 40px;
+        }
+        .navbar .btn-download {
+            background-color: #d8aed2;
+            border: none;
+            color: rgb(0, 0, 0); /* Button text color set to black */
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Nipper Audit Report</h1>
-    <div>{{ audit_content | safe }}</div>
-    <form action="{{ url_for('nipper_bp.download_audit') }}" method="GET">
-        <button type="submit" class="btn btn-primary">Download Audit Report as PDF</button>
-    </form>
+    <div class="navbar">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DXC_Technology_logo_%282021%29.svg/2560px-DXC_Technology_logo_%282021%29.svg.png" alt="DXC Logo">
+        <h1>Report Audit</h1>
+        <a href="{{ url_for('nipper_bp.download_audit') }}" class="btn-download">Download Audit Report as PDF</a>
+    </div>
+    <div class="content">
+        <h1>Nipper Audit Report</h1>
+        <div>{{ audit_content | safe }}</div>
+    </div>
 </body>
 </html>

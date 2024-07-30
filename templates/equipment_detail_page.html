@@ -227,6 +227,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="http://{{ equipment.ip_address }}" class="text-gray-400">
+                        <i class="fas fa-laptop"></i><span class="ml-2">Access GUI</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url_for('client_bp.download_config', client_name=client_name, equip_id=equipment._id) }}"
                         class="text-gray-400">
                         <i class="fas fa-cogs"></i><span class="ml-2">Retrieve Configuration</span>
@@ -253,6 +258,7 @@
                         </button>
                     </form>
                 </li>
+                
             </ul>
         </div>
     </div>
